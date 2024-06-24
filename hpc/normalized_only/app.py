@@ -1,5 +1,4 @@
 import numpy as np
-import pymatgen.core as pmg
 import streamlit as st
 
 def cu_fraction(Sn_percent):
@@ -12,11 +11,10 @@ def cu_fraction(Sn_percent):
 def get_weight(Sn_percent):
     # create the structure
     if Sn_percent <= 1:
-        base = f'Cu{1-Sn_percent}Sn{Sn_percent}'
-        comp = pmg.Composition(base)
+        weight = (1-Sn_percent)*63.546 + (Sn_percent)*118.71
     else:
         raise ValueError('Sn percent must be less than or equal to 1')
-    return comp.weight
+    return weight
 
 def ethane(Sn_percent, Pot, weight, pH, Cu_percent, cDen):
     c0 = -0.004914360452691078
