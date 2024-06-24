@@ -105,28 +105,18 @@ def calculate_outputs(Sn_percent, Pot, cDen, pH):
     }
 
 
-st.title('Electrochemical Reaction Outputs')
+st.title('CO2 Reduction Faradaic Efficiency Calculator')
 
 st.text('This app calculates the Faradaic efficiency of the electrochemical reactions based on the input parameters.')
 
 st.write('## Input Parameters')
-cDen = st.number_input('Current Density (cDen)', min_value=141.00, max_value=450.00, value=200.00)
-cDen_slider = st.slider('Adjust Current Density (cDen)', 141.00, 450.00, value=cDen)
+cDen = st.number_input('Current Density', min_value=141.00, max_value=450.00, value=200.00)
 
-Pot = st.number_input('Potential (Pot)', min_value=2.80, max_value=4.70, value=3.50)
-Pot_slider = st.slider('Adjust Potential (Pot)', 2.80, 4.70, value=Pot)
+Pot = st.number_input('Potential', min_value=2.80, max_value=4.70, value=3.50)
 
-Sn_percent = st.number_input('Sn %', min_value=0.0, max_value=1.0, value=0.5)
-Sn_percent_slider = st.slider('Adjust Sn %', 0.0, 1.0, value=Sn_percent)
+Sn_percent = st.number_input('Sn (fraction)', min_value=0.0, max_value=1.0, value=0.5)
 
 pH = st.number_input('pH', min_value=8.02, max_value=14.05, value=9.0)
-pH_slider = st.slider('Adjust pH', 8.02, 14.05, value=pH)
-
-# Synchronize slider and number input values
-cDen = cDen_slider if cDen != cDen_slider else cDen
-Pot = Pot_slider if Pot != Pot_slider else Pot
-Sn_percent = Sn_percent_slider if Sn_percent != Sn_percent_slider else Sn_percent
-pH = pH_slider if pH != pH_slider else pH
 
 if st.button('Calculate'):
     results = calculate_outputs(Sn_percent, Pot, cDen, pH)
