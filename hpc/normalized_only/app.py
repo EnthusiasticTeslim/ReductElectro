@@ -81,9 +81,7 @@ def hydrogen(Sn, Cu, Pot, pH, cDen, weight):
 
 def calculate_outputs(Sn_percent, Pot, cDen, pH):
     Cu_percent = cu_fraction(Sn_percent) / 1.00 # max Cu fraction
-    print(f'Weight of the structure: {get_weight(Sn_percent)}')
     weight = get_weight(Sn_percent) / 118.71 # max weight of the structure
-
     Pot /= 4.70 # max potential
     pH /= 14.05 # max pH
     cDen /= 450.00 # max current density
@@ -96,11 +94,11 @@ def calculate_outputs(Sn_percent, Pot, cDen, pH):
 
     
     return {
-        'C2H4 FE': round(get_ethane*100, 2),
-        'CO FE ': round(get_carbonmono*100, 2),
-        'Ethanol FE': round(get_ethanol*100, 2),
-        'Formate FE': round(get_formate*100, 2),
-        'H2 FE': round(get_hydrogen*100, 2)
+        'C2H4': round(get_ethane*100, 2),
+        'CO': round(get_carbonmono*100, 2),
+        'Ethanol': round(get_ethanol*100, 2),
+        'Formate': round(get_formate*100, 2),
+        'H2': round(get_hydrogen*100, 2)
 
     }
 
@@ -118,7 +116,34 @@ Sn_percent = st.number_input('Sn (fraction)', min_value=0.0, max_value=1.0, valu
 
 pH = st.number_input('pH', min_value=8.02, max_value=14.05, value=9.0)
 
+# if st.button('Calculate'):
+#     results = calculate_outputs(Sn_percent, Pot, cDen, pH)
+#     st.write('## Faradaic Efficiency')
+#     st.write(results) 
+
 if st.button('Calculate'):
     results = calculate_outputs(Sn_percent, Pot, cDen, pH)
-    st.write('## Results')
-    st.write(results) 
+    
+    st.write('## Faradaic Efficiency')
+    st.markdown("""
+    <style>
+    .result-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-top: 20px;
+    }
+    .result-item {
+        background-color: #f0f0f0;
+        padding: 10px;
+        margin: 5px 0;
+        border-radius: 5px;
+        width: 100%;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+    
+    st.markdown('<div class="result-container">', unsafe_allow_html=True)
+    for key, value in results.items():
+        st.markdown(f'<div class="result-item"><strong>{key}:</strong> {value}%</div>', unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
