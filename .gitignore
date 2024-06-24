@@ -8,3 +8,4 @@ notebook/MultiObj-BO.ipynb
 notebook/bayesian-opt-model.ipynb
 notebook/1-multi_objective_bo.ipynb
 notebook/BayesOptRunProgress.txt
+*csv # ignore all csv files to avoid uploading private data
