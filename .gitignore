@@ -1,0 +1,10 @@
+*__pycache__*
+*dump*
+*.DS_Store*
+*ttxt*
+notebook/Feature-Preparationl.ipynb
+notebook/multi_objective_bo.ipynb
+notebook/MultiObj-BO.ipynb
+notebook/bayesian-opt-model.ipynb
+notebook/1-multi_objective_bo.ipynb
+notebook/BayesOptRunProgress.txt

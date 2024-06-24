@@ -1,0 +1,9 @@
+add_bar: false
+data_path: ../data/data.xlsx
+label: CO
+label_index: 1
+output_path: ../reports
+reshuffle: false
+save: true
+seed: 16
+test_size: 0.1

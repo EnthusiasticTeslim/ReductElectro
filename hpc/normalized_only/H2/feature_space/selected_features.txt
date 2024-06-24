@@ -1,0 +1,67 @@
+# FEAT_ID     Feature Postfix Expression (RPN)
+0             0|cb|cb
+1             0|sp|1|cb|mult
+2             0|sp|0|cbrt|abd
+3             0|sp|0|cos|add
+4             0|sp|cos
+5             0|sp|sq
+6             1|0|mult|sp
+7             0|sp|cb
+8             0|sp|sp
+9             3|nexp|0|sp|add
+#-----------------------------------------------------------------------
+10            2|cbrt|5|mult
+11            2|cbrt|4|exp|abd
+12            2|cbrt|4|log|mult
+13            2|cbrt|5|add
+14            2|sqrt|2|cbrt|sub
+15            2|cbrt|5|1|sub|add
+16            2|cbrt|5|3|mult|add
+17            2|cbrt|5|3|mult|mult
+18            2|cbrt|5|1|div|mult
+19            2|cbrt|5|3|add|add
+#-----------------------------------------------------------------------
+20            2|cbrt|cbrt
+21            2|0|abd|1|sq|div
+22            2|sqrt|0|1|div|abd
+23            2|cbrt|0|cbrt|abd
+24            2|cbrt|4|1|mult|abd
+25            2|cbrt|0|3|div|abd
+26            2|cbrt|0|sqrt|abd
+27            0|3|div|1|cb|abd
+28            2|cbrt|0|1|div|abd
+29            0|sin|1|0|mult|abd
+#-----------------------------------------------------------------------
+30            0|sin|1|sq|abd
+31            1|3|div|4|cbrt|abd
+32            3|1|sub|1|0|mult|mult
+33            1|0|div|1|sp|add
+34            3|0|mult|1|sin|abd
+35            1|0|mult|1|sp|sub
+36            3|0|add|1|sp|sub
+37            3|0|mult|1|sp|sub
+38            3|1|sub|0|sq|mult
+39            1|0|sub|5|2|mult|abd
+#-----------------------------------------------------------------------
+40            2|sin|2|1|abd|mult
+41            5|0|mult|5|2|mult|mult
+42            2|sqrt|5|sp|add
+43            5|2|mult|4|1|sub|mult
+44            2|cbrt|5|sp|add
+45            2|sq|5|sp|mult
+46            2|cbrt|5|1|abd|abd
+47            5|4|abd|4|1|mult|abd
+48            5|sp|5|sin|abd
+49            2|1|abd|5|sp|abd
+#-----------------------------------------------------------------------
+50            2|sin|4|3|abd|mult
+51            5|4|abd|4|0|mult|abd
+52            5|3|sub|4|3|abd|mult
+53            3|2|mult|4|3|abd|mult
+54            5|3|abd|4|3|abd|mult
+55            2|sqrt|4|3|abd|mult
+56            5|sq|5|sin|abd
+57            1|sp|5|1|abd|abd
+58            0|sp|5|4|abd|abd
+59            0|cb|5|4|abd|abd
+#-----------------------------------------------------------------------

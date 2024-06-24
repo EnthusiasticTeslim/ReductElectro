@@ -1,0 +1,9 @@
+add_bar: false
+data_path: ../data/data.xlsx
+label: C_2H_4
+label_index: 0
+output_path: ../reports
+reshuffle: true
+save: true
+seed: 200009
+test_size: 0.1

@@ -1,0 +1,10 @@
+add_bar: false
+data_path: ./data/data.xlsx
+figures_path: ./reports
+label: Formate
+label_index: 4
+models_path: ./models
+reshuffle: false
+save: true
+seed: 22
+test_size: 0.1

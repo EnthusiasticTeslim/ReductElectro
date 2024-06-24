@@ -1,0 +1,67 @@
+# FEAT_ID     Feature Postfix Expression (RPN)
+0             0|sq|0|4|div|abd
+1             5|cb|3|1|mult|mult
+2             1|sqrt|5|sp|abd
+3             5|sp|4|sqrt|abd
+4             0|cb|0|4|div|abd
+5             2|cbrt|4|1|abd|abd
+6             1|sin|5|sp|abd
+7             5|sp|1|abd
+8             5|sp|4|cbrt|abd
+9             5|sp|4|cos|abd
+#-----------------------------------------------------------------------
+10            5|0|div|sin
+11            5|0|abd|1|0|mult|div
+12            5|1|div|0|sp|div
+13            3|0|add|5|0|div|abd
+14            0|4|div|5|0|div|abd
+15            5|3|mult|0|sp|div
+16            5|0|div|4|1|add|abd
+17            5|0|div|4|0|add|abd
+18            1|0|add|5|0|div|abd
+19            1|4|div|5|0|div|abd
+#-----------------------------------------------------------------------
+20            1|inv|4|0|abd|add
+21            2|cbrt|4|0|mult|abd
+22            4|0|abd|4|1|mult|div
+23            1|cb|4|0|abd|abd
+24            2|sqrt|4|cb|abd
+25            0|3|div|1|sq|abd
+26            0|sqrt|3|1|mult|abd
+27            4|0|abd|2|1|add|div
+28            0|1|div|3|1|mult|abd
+29            2|cbrt|4|sq|abd
+#-----------------------------------------------------------------------
+30            4|0|abd|4|1|add|div
+31            4|0|abd|4|sq|div
+32            4|0|abd|4|cos|mult
+33            4|0|abd|4|nexp|mult
+34            2|cos|4|0|abd|mult
+35            3|4|div|4|0|abd|mult
+36            4|0|abd|4|div
+37            5|exp|4|0|abd|mult
+38            0|nexp|5|0|mult|abd
+39            5|0|mult|4|nexp|abd
+#-----------------------------------------------------------------------
+40            2|sq|4|0|mult|abd
+41            2|cb|0|sq|abd
+42            1|4|div|5|2|abd|abd
+43            2|sp|0|sq|abd
+44            5|4|abd|0|abd
+45            2|sp|0|cb|abd
+46            2|cb|4|0|mult|abd
+47            4|0|mult|4|sp|abd
+48            5|cb|4|nexp|abd
+49            1|nexp|5|sp|abd
+#-----------------------------------------------------------------------
+50            5|1|abd|4|sp|abd
+51            2|0|abd|0|cos|abd
+52            2|1|abd|4|cb|mult
+53            2|0|abd|4|nexp|abd
+54            0|sp|5|2|abd|abd
+55            1|sp|5|2|abd|abd
+56            2|0|abd|3|cos|abd
+57            2|1|abd|5|1|abd|mult
+58            2|0|abd|0|nexp|abd
+59            2|0|abd|5|0|abd|mult
+#-----------------------------------------------------------------------

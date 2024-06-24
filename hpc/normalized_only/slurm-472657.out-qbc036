@@ -1,0 +1,318 @@
+Date              = Sun Jun 23 12:39:50 CDT 2024
+Hostname          = qbc036
+Working Directory = /work/tolayi1/eqnbased/normalized_only
+
+Slurm Nodes Allocated          = qbc036
+Number of Nodes Allocated      = 1
+Number of Tasks Allocated      = 4
+
+***************** Writing the json file for C2H4 *****************
+   S/N      cDen       Pot  Sn %   pH  ...  C2H4    CO    H2  EtoH  FORM
+0    1  0.333333  0.744681   1.0  1.0  ...   0.0  0.23  0.12   0.0  0.61
+1    2  0.333333  0.702128   0.8  1.0  ...   0.0  0.23  0.07   0.0  0.66
+
+[2 rows x 12 columns]
+   S/N      cDen       Pot  Sn %   pH    weight  Cu %  C2H4
+0    1  0.333333  0.744681   1.0  1.0  1.000000   0.0   0.0
+1    2  0.333333  0.702128   0.8  1.0  0.907061   0.2   0.0
+Data preparation completed!
+***************** Running the sisso++ for C2H4 *****************
+time input_parsing: 0.010112 s
+Time to generate feat space: 0.547611 s
+Projection time: 0.0602739 s
+Time to get best features on rank : 0.0251091 s
+Complete final combination/selection from all ranks: 0.0328422 s
+Time for SIS: 0.122507 s
+Time for l0-norm: 0.0826211 s
+Projection time: 0.061919 s
+Time to get best features on rank : 0.025408 s
+Complete final combination/selection from all ranks: 0.031167 s
+Time for SIS: 0.149395 s
+Time for l0-norm: 0.052413 s
+Projection time: 0.0606952 s
+Time to get best features on rank : 0.0268102 s
+Complete final combination/selection from all ranks: 0.034775 s
+Time for SIS: 0.154559 s
+Time for l0-norm: 0.114616 s
+Projection time: 0.063575 s
+Time to get best features on rank : 0.0254622 s
+Complete final combination/selection from all ranks: 0.058712 s
+Time for SIS: 0.180472 s
+Time for l0-norm: 0.193003 s
+Projection time: 0.0517871 s
+Time to get best features on rank : 0.0277591 s
+Complete final combination/selection from all ranks: 0.0282369 s
+Time for SIS: 0.138802 s
+Time for l0-norm: 2.62559 s
+Projection time: 0.090281 s
+Time to get best features on rank : 0.024694 s
+Complete final combination/selection from all ranks: 0.0471129 s
+Time for SIS: 0.169503 s
+Time for l0-norm: 65.8084 s
+Train RMSE: 0.0439106 Unitless
+c0 + a0 * (cbrt(Sn %) + (|weight - pH|))
+
+Train RMSE: 0.0253606 Unitless
+c0 + a0 * ((pH - Pot) * (Cu % / cDen)) + a1 * (|cbrt(Sn %) - weight|)
+
+Train RMSE: 0.0197157 Unitless
+c0 + a0 * (|(Pot^3) - (|Cu % - cDen|)|) + a1 * ((pH - Pot) * (|Cu % - cDen|)) + a2 * (|cbrt(Sn %) - weight|)
+
+Train RMSE: 0.0158019 Unitless
+c0 + a0 * ((pH - Pot) * (Cu % / cDen)) + a1 * ((Cu % / Pot) - (Cu % / pH)) + a2 * ((Cu %^6) * (Cu % - pH)) + a3 * cbrt(sqrt(Sn %))
+
+Train RMSE: 0.0134823 Unitless
+c0 + a0 * (|(pH * Pot) - (cDen / Pot)|) + a1 * ((pH - Pot) * (Cu % / cDen)) + a2 * ((Cu % / Pot) - (Cu % / pH)) + a3 * ((Cu %^6) * (Cu % - pH)) + a4 * cbrt(sqrt(Sn %))
+
+Train RMSE: 0.00996316 Unitless
+c0 + a0 * (|(Sn % / Pot) - (weight^3)|) + a1 * (|(pH * Pot) - sqrt(cDen)|) + a2 * ((pH - Pot) * (Cu % / cDen)) + a3 * ((Cu % / Pot) - (Cu % / pH)) + a4 * ((Cu %^6) * (Cu % - pH)) + a5 * (cbrt(Sn %) - cos(Cu %))
+
+***************** Done with C2H4 *****************
+***************** Writing the json file for CO *****************
+   S/N      cDen       Pot  Sn %   pH  ...  C2H4    CO    H2  EtoH  FORM
+0    1  0.333333  0.744681   1.0  1.0  ...   0.0  0.23  0.12   0.0  0.61
+1    2  0.333333  0.702128   0.8  1.0  ...   0.0  0.23  0.07   0.0  0.66
+
+[2 rows x 12 columns]
+   S/N      cDen       Pot  Sn %   pH    weight  Cu %    CO
+0    1  0.333333  0.744681   1.0  1.0  1.000000   0.0  0.23
+1    2  0.333333  0.702128   0.8  1.0  0.907061   0.2  0.23
+Data preparation completed!
+***************** Running the sisso++ for CO *****************
+time input_parsing: 0.00845194 s
+Time to generate feat space: 0.46781 s
+Projection time: 0.0686412 s
+Time to get best features on rank : 0.0134239 s
+Complete final combination/selection from all ranks: 0.0201521 s
+Time for SIS: 0.122367 s
+Time for l0-norm: 0.0610039 s
+Projection time: 0.054837 s
+Time to get best features on rank : 0.026984 s
+Complete final combination/selection from all ranks: 0.030623 s
+Time for SIS: 0.125834 s
+Time for l0-norm: 0.031949 s
+Projection time: 0.030179 s
+Time to get best features on rank : 0.0254021 s
+Complete final combination/selection from all ranks: 0.0312309 s
+Time for SIS: 0.117048 s
+Time for l0-norm: 0.0979469 s
+Projection time: 0.069854 s
+Time to get best features on rank : 0.027874 s
+Complete final combination/selection from all ranks: 0.0313439 s
+Time for SIS: 0.160852 s
+Time for l0-norm: 0.163941 s
+Projection time: 0.0272379 s
+Time to get best features on rank : 0.027653 s
+Complete final combination/selection from all ranks: 0.0543091 s
+Time for SIS: 0.140534 s
+Time for l0-norm: 2.64682 s
+Projection time: 0.0704541 s
+Time to get best features on rank : 0.0259509 s
+Complete final combination/selection from all ranks: 0.0362852 s
+Time for SIS: 0.13717 s
+Time for l0-norm: 68.878 s
+Train RMSE: 0.0757396 Unitless
+c0 + a0 * ((Pot - cDen) / (Pot^6))
+
+Train RMSE: 0.0553885 Unitless
+c0 + a0 * (|(Cu %^6) - (|weight - cDen|)|) + a1 * (ln(cDen) / (Pot^3))
+
+Train RMSE: 0.047112 Unitless
+c0 + a0 * (|(Cu % / cDen) - (1.0 / weight)|) + a1 * (|(exp(-1.0 * Pot)) - (Cu %^2)|) + a2 * ((pH - cDen) / (weight * cDen))
+
+Train RMSE: 0.0391038 Unitless
+c0 + a0 * (|(cDen / pH) - cos(Pot)|) + a1 * (|(|Sn % - Pot|) - (exp(-1.0 * weight))|) + a2 * (|(Cu %^6) - (|weight - cDen|)|) + a3 * ((|Pot - cDen|) / (Pot^6))
+
+Train RMSE: 0.0347984 Unitless
+c0 + a0 * (|(pH - cDen) - (Pot^6)|) + a1 * ((Sn %^6) * (Cu % * cDen)) + a2 * (|(|Sn % - Pot|) - (exp(-1.0 * Pot))|) + a3 * (|(Cu %^6) - (|weight - cDen|)|) + a4 * ((|Pot - cDen|) / (Pot^6))
+
+Train RMSE: 0.0270533 Unitless
+c0 + a0 * (|sqrt(Sn %) - (|Cu % - Pot|)|) + a1 * (|(pH - cDen) - (Pot^6)|) + a2 * (|(cDen / pH) - cos(Pot)|) + a3 * ((Sn %^6) * (Cu % * cDen)) + a4 * (|(Cu % / cDen) - (Cu % + Pot)|) + a5 * (|sqrt(Sn %) - (cDen / pH)|)
+
+***************** Done with CO *****************
+***************** Writing the json file for H2 *****************
+   S/N      cDen       Pot  Sn %   pH  ...  C2H4    CO    H2  EtoH  FORM
+0    1  0.333333  0.744681   1.0  1.0  ...   0.0  0.23  0.12   0.0  0.61
+1    2  0.333333  0.702128   0.8  1.0  ...   0.0  0.23  0.07   0.0  0.66
+
+[2 rows x 12 columns]
+   S/N      cDen       Pot  Sn %   pH    weight  Cu %    H2
+0    1  0.333333  0.744681   1.0  1.0  1.000000   0.0  0.12
+1    2  0.333333  0.702128   0.8  1.0  0.907061   0.2  0.07
+Data preparation completed!
+***************** Running the sisso++ for H2 *****************
+time input_parsing: 0.010601 s
+Time to generate feat space: 0.532141 s
+Projection time: 0.101145 s
+Time to get best features on rank : 0.024894 s
+Complete final combination/selection from all ranks: 0.0329971 s
+Time for SIS: 0.18477 s
+Time for l0-norm: 0.0810161 s
+Projection time: 0.070893 s
+Time to get best features on rank : 0.0258651 s
+Complete final combination/selection from all ranks: 0.0290699 s
+Time for SIS: 0.155784 s
+Time for l0-norm: 0.0772741 s
+Projection time: 0.075299 s
+Time to get best features on rank : 0.027699 s
+Complete final combination/selection from all ranks: 0.0185828 s
+Time for SIS: 0.128864 s
+Time for l0-norm: 0.090461 s
+Projection time: 0.0643761 s
+Time to get best features on rank : 0.0280018 s
+Complete final combination/selection from all ranks: 0.0314369 s
+Time for SIS: 0.133263 s
+Time for l0-norm: 0.160359 s
+Projection time: 0.063977 s
+Time to get best features on rank : 0.025471 s
+Complete final combination/selection from all ranks: 0.030988 s
+Time for SIS: 0.151444 s
+Time for l0-norm: 3.02395 s
+Projection time: 0.060416 s
+Time to get best features on rank : 0.026787 s
+Complete final combination/selection from all ranks: 0.0337532 s
+Time for SIS: 0.152319 s
+Time for l0-norm: 79.1964 s
+Train RMSE: 0.0336876 Unitless
+c0 + a0 * ((exp(-1.0 * pH)) + (cDen^6))
+
+Train RMSE: 0.0180182 Unitless
+c0 + a0 * (cbrt(Sn %) + (Cu % + pH)) + a1 * ((cDen^6) * (Pot^3))
+
+Train RMSE: 0.0132573 Unitless
+c0 + a0 * (|sin(cDen) - (Pot * cDen)|) + a1 * (cbrt(Sn %) + (Cu % + pH)) + a2 * ((cDen^6) * (Pot^3))
+
+Train RMSE: 0.0105422 Unitless
+c0 + a0 * (|sin(cDen) - (Pot^2)|) + a1 * (|sin(cDen) - (Pot * cDen)|) + a2 * (cbrt(Sn %) + (Cu % - Pot)) + a3 * ((exp(-1.0 * pH)) + (cDen^6))
+
+Train RMSE: 0.00742719 Unitless
+c0 + a0 * ((Sn %^2) * (Cu %^6)) + a1 * (|(Pot - cDen) - (Cu % * Sn %)|) + a2 * (|sin(cDen) - (Pot * cDen)|) + a3 * (cbrt(Sn %) + (Cu % - Pot)) + a4 * ((exp(-1.0 * pH)) + (cDen^6))
+
+Train RMSE: 0.00638823 Unitless
+c0 + a0 * (|(cDen^3) - (|Cu % - weight|)|) + a1 * ((Sn %^2) * (Cu %^6)) + a2 * (|(Pot / pH) - cbrt(weight)|) + a3 * (|sin(cDen) - (Pot * cDen)|) + a4 * (cbrt(Sn %) + (Cu % - Pot)) + a5 * ((exp(-1.0 * pH)) + (cDen^6))
+
+***************** Done with H2 *****************
+***************** Writing the json file for EtoH *****************
+   S/N      cDen       Pot  Sn %   pH  ...  C2H4    CO    H2  EtoH  FORM
+0    1  0.333333  0.744681   1.0  1.0  ...   0.0  0.23  0.12   0.0  0.61
+1    2  0.333333  0.702128   0.8  1.0  ...   0.0  0.23  0.07   0.0  0.66
+
+[2 rows x 12 columns]
+   S/N      cDen       Pot  Sn %   pH    weight  Cu %  EtoH
+0    1  0.333333  0.744681   1.0  1.0  1.000000   0.0   0.0
+1    2  0.333333  0.702128   0.8  1.0  0.907061   0.2   0.0
+Data preparation completed!
+***************** Running the sisso++ for EtoH *****************
+time input_parsing: 0.010051 s
+Time to generate feat space: 0.513763 s
+Projection time: 0.062319 s
+Time to get best features on rank : 0.0257361 s
+Complete final combination/selection from all ranks: 0.0722759 s
+Time for SIS: 0.198633 s
+Time for l0-norm: 0.050221 s
+Projection time: 0.0423951 s
+Time to get best features on rank : 0.025389 s
+Complete final combination/selection from all ranks: 0.0458181 s
+Time for SIS: 0.119578 s
+Time for l0-norm: 0.0552759 s
+Projection time: 0.061897 s
+Time to get best features on rank : 0.0285492 s
+Complete final combination/selection from all ranks: 0.0378759 s
+Time for SIS: 0.135296 s
+Time for l0-norm: 0.102388 s
+Projection time: 0.0736828 s
+Time to get best features on rank : 0.0290489 s
+Complete final combination/selection from all ranks: 0.032733 s
+Time for SIS: 0.170047 s
+Time for l0-norm: 0.177063 s
+Projection time: 0.0858719 s
+Time to get best features on rank : 0.026202 s
+Complete final combination/selection from all ranks: 0.029294 s
+Time for SIS: 0.151908 s
+Time for l0-norm: 2.73305 s
+Projection time: 0.079982 s
+Time to get best features on rank : 0.0256329 s
+Complete final combination/selection from all ranks: 0.0340781 s
+Time for SIS: 0.148833 s
+Time for l0-norm: 67.6622 s
+Train RMSE: 0.085049 Unitless
+c0 + a0 * (|(Cu %^6) - cos(weight)|)
+
+Train RMSE: 0.0631367 Unitless
+c0 + a0 * (|(Pot / weight) - (Cu % / cDen)|) + a1 * (|(Cu %^6) - cos(weight)|)
+
+Train RMSE: 0.0553966 Unitless
+c0 + a0 * (|cbrt(Sn %) - (weight^2)|) + a1 * (|(Pot / weight) - (Cu % / cDen)|) + a2 * (|(Cu %^6) - cbrt(weight)|)
+
+Train RMSE: 0.0452963 Unitless
+c0 + a0 * (|cbrt(Sn %) - (weight * cDen)|) + a1 * (|(Cu % / cDen) - (weight + cDen)|) + a2 * (|(Cu %^6) - cos(weight)|) + a3 * ((Cu %^3) * (pH * Pot))
+
+Train RMSE: 0.0367223 Unitless
+c0 + a0 * (|(exp(-1.0 * Pot)) - (Cu %^6)|) + a1 * (|cbrt(Sn %) - (weight^2)|) + a2 * (|cbrt(Sn %) - (weight * cDen)|) + a3 * (|(Pot + cDen) - (Cu % / cDen)|) + a4 * (|(Cu %^6) - Pot|)
+
+Train RMSE: 0.0287611 Unitless
+c0 + a0 * ((|Sn % - cDen|) * (|Cu % - cDen|)) + a1 * (|(exp(-1.0 * Pot)) - (Cu %^6)|) + a2 * (|cbrt(Sn %) - (weight^2)|) + a3 * (|(cDen / Pot) - (pH * Pot)|) + a4 * (|(Cu % / cDen) - (weight + Pot)|) + a5 * (|(Cu %^6) - Pot|)
+
+***************** Done with EtoH *****************
+***************** Writing the json file for FORM *****************
+   S/N      cDen       Pot  Sn %   pH  ...  C2H4    CO    H2  EtoH  FORM
+0    1  0.333333  0.744681   1.0  1.0  ...   0.0  0.23  0.12   0.0  0.61
+1    2  0.333333  0.702128   0.8  1.0  ...   0.0  0.23  0.07   0.0  0.66
+
+[2 rows x 12 columns]
+   S/N      cDen       Pot  Sn %   pH    weight  Cu %  FORM
+0    1  0.333333  0.744681   1.0  1.0  1.000000   0.0  0.61
+1    2  0.333333  0.702128   0.8  1.0  0.907061   0.2  0.66
+Data preparation completed!
+***************** Running the sisso++ for FORM *****************
+time input_parsing: 0.00843191 s
+Time to generate feat space: 0.484272 s
+Projection time: 0.0558982 s
+Time to get best features on rank : 0.0271192 s
+Complete final combination/selection from all ranks: 0.0340781 s
+Time for SIS: 0.14345 s
+Time for l0-norm: 0.0832989 s
+Projection time: 0.0778561 s
+Time to get best features on rank : 0.0251992 s
+Complete final combination/selection from all ranks: 0.0533059 s
+Time for SIS: 0.161974 s
+Time for l0-norm: 0.054574 s
+Projection time: 0.067858 s
+Time to get best features on rank : 0.026418 s
+Complete final combination/selection from all ranks: 0.031857 s
+Time for SIS: 0.159485 s
+Time for l0-norm: 0.0675669 s
+Projection time: 0.0468569 s
+Time to get best features on rank : 0.0247641 s
+Complete final combination/selection from all ranks: 0.052819 s
+Time for SIS: 0.154248 s
+Time for l0-norm: 0.175685 s
+Projection time: 0.0595329 s
+Time to get best features on rank : 0.0263851 s
+Complete final combination/selection from all ranks: 0.0556769 s
+Time for SIS: 0.172744 s
+Time for l0-norm: 2.40994 s
+Projection time: 0.0716751 s
+Time to get best features on rank : 0.0273302 s
+Complete final combination/selection from all ranks: 0.0557539 s
+Time for SIS: 0.185468 s
+Time for l0-norm: 79.3873 s
+Train RMSE: 0.0738281 Unitless
+c0 + a0 * (|(weight * Sn %) - (|Cu % - weight|)|)
+
+Train RMSE: 0.0442365 Unitless
+c0 + a0 * ((Pot^6)^6) + a1 * (|(weight * Sn %) - (|Cu % - weight|)|)
+
+Train RMSE: 0.0336068 Unitless
+c0 + a0 * ((|Cu % - Sn %|) * (Cu % * Sn %)) + a1 * ((Pot^6)^6) + a2 * (|sin(Sn %) - (|Cu % - weight|)|)
+
+Train RMSE: 0.0247461 Unitless
+c0 + a0 * (|(Cu %^6) - Sn %|) + a1 * ((Pot^6)^6) + a2 * (|(weight * Sn %) - (|Cu % - weight|)|) + a3 * ((|Cu % - weight|) * (Cu %^6))
+
+Train RMSE: 0.0220273 Unitless
+c0 + a0 * (|sin(cDen) - (|Cu % - Sn %|)|) + a1 * (|cbrt(Sn %) - (weight^2)|) + a2 * (|(exp(-1.0 * Pot)) - (Cu %^6)|) + a3 * ((Pot^6)^6) + a4 * (|(weight * Sn %) - (|Cu % - weight|)|)
+
+Train RMSE: 0.0169185 Unitless
+c0 + a0 * (|(|Cu % - cDen|) - sqrt(Cu %)|) + a1 * (|(pH * cDen) - (|Cu % - Sn %|)|) + a2 * (|(Cu %^6) - (exp(-1.0 * weight))|) + a3 * (|cbrt(Sn %) - (weight^2)|) + a4 * ((Pot^6)^6) + a5 * (|(weight * Sn %) - (|Cu % - weight|)|)
+
+***************** Done with FORM *****************

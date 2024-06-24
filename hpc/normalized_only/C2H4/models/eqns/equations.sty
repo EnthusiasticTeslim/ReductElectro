@@ -1,0 +1,71 @@
+\documentclass{article}
+\usepackage{amsmath}
+\begin{document}
+
+\section*{Equation 1}
+\[
+c_0 + a_0 \cdot \left( \sqrt[3]{\% \text{Sn}} + \left| \text{weight} - \text{pH} \right| \right)
+\]
+\[
+\text{RMSE: } 0.0439106366052205; \quad \text{Max AE: } 0.119363450548747
+\]
+\[
+a_0, c_0 \quad -0.3278840906576388, \quad 0.3492424242132026
+\]
+
+\section*{Equation 2}
+\[
+c_0 + a_0 \cdot \left( (\text{pH} - \text{Pot}) \cdot \left( \frac{\% \text{Cu}}{\text{cDen}} \right) \right) + a_1 \cdot \left| \sqrt[3]{\% \text{Sn}} - \text{weight} \right|
+\]
+\[
+\text{RMSE: } 0.0253605986870445; \quad \text{Max AE: } 0.0552495419608132
+\]
+\[
+a_0, a_1, c_0 \quad -0.07847390026992267, \quad 0.562955688069949, \quad -0.001521517168448162
+\]
+
+\section*{Equation 3}
+\[
+c_0 + a_0 \cdot \left| (\text{Pot}^3) - \left| \% \text{Cu} - \text{cDen} \right| \right| + a_1 \cdot \left( (\text{pH} - \text{Pot}) \cdot \left| \% \text{Cu} - \text{cDen} \right| \right) + a_2 \cdot \left| \sqrt[3]{\% \text{Sn}} - \text{weight} \right|
+\]
+\[
+\text{RMSE: } 0.0197156892111356; \quad \text{Max AE: } 0.0485548585028596
+\]
+\[
+a_0, a_1, a_2, c_0 \quad -0.07776031778427796, \quad -0.3259503253435158, \quad 0.5593915282365148, \quad 0.02235363274912375
+\]
+
+\section*{Equation 4}
+\[
+c_0 + a_0 \cdot \left( (\text{pH} - \text{Pot}) \cdot \left( \frac{\% \text{Cu}}{\text{cDen}} \right) \right) + a_1 \cdot \left( \frac{\% \text{Cu}}{\text{Pot}} - \frac{\% \text{Cu}}{\text{pH}} \right) + a_2 \cdot \left( (\% \text{Cu})^6 \cdot (\% \text{Cu} - \text{pH}) \right) + a_3 \cdot \sqrt[3]{\sqrt{\% \text{Sn}}}
+\]
+\[
+\text{RMSE: } 0.0158019346340084; \quad \text{Max AE: } 0.0441956442698865
+\]
+\[
+a_0, a_1, a_2, a_3, c_0 \quad -0.3160577497294035, \quad 0.5460642074535786, \quad 0.55053684147049, \quad -0.2106117548301835, \quad 0.2069561543854506
+\]
+
+\section*{Equation 5}
+\[
+c_0 + a_0 \cdot \left| (\text{pH} \cdot \text{Pot}) - \left( \frac{\text{cDen}}{\text{Pot}} \right) \right| + a_1 \cdot \left( (\text{pH} - \text{Pot}) \cdot \left( \frac{\% \text{Cu}}{\text{cDen}} \right) \right) + a_2 \cdot \left( \frac{\% \text{Cu}}{\text{Pot}} - \frac{\% \text{Cu}}{\text{pH}} \right) + a_3 \cdot \left( (\% \text{Cu})^6 \cdot (\% \text{Cu} - \text{pH}) \right) + a_4 \cdot \sqrt[3]{\sqrt{\% \text{Sn}}}
+\]
+\[
+\text{RMSE: } 0.0134823284913564; \quad \text{Max AE: } 0.0334524173409929
+\]
+\[
+a_0, a_1, a_2, a_3, a_4, c_0 \quad 0.1174756564461541, \quad -0.3341237620034945, \quad 0.5844441048106342, \quad 0.5797202325348703, \quad -0.2021115822793763, \quad 0.1878241997151678
+\]
+
+\section*{Equation 6}
+\[
+c_0 + a_0 \cdot \left| \left( \frac{\% \text{Sn}}{\text{Pot}} \right) - (\text{weight}^3) \right| + a_1 \cdot \left| (\text{pH} \cdot \text{Pot}) - \sqrt{\text{cDen}} \right| + a_2 \cdot \left( (\text{pH} - \text{Pot}) \cdot \left( \frac{\% \text{Cu}}{\text{cDen}} \right) \right) + a_3 \cdot \left( \frac{\% \text{Cu}}{\text{Pot}} - \frac{\% \text{Cu}}{\text{pH}} \right) + a_4 \cdot \left( (\% \text{Cu})^6 \cdot (\% \text{Cu} - \text{pH}) \right) + a_5 \cdot \left( \sqrt[3]{\% \text{Sn}} - \cos(\% \text{Cu}) \right)
+\]
+\[
+\text{RMSE: } 0.00996316476891841; \quad \text{Max AE: } 0.0199472248460496
+\]
+\[
+a_0, a_1, a_2, a_3, a_4, a_5, c_0 \quad -0.2066222976907354, \quad 0.5316870806624426, \quad -0.3948118857569158, \quad 0.7149525683414504, \quad 0.620296271014388, \quad -0.3429464114810739, \quad -0.004914360452691078
+\]
+
+\end{document}

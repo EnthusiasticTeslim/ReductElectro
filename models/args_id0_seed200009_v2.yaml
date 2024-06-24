@@ -1,0 +1,10 @@
+add_bar: false
+data_path: ./data/data_v2.xlsx
+figures_path: ./reports
+label: C_2H_4
+label_index: 0
+models_path: ./models
+reshuffle: true
+save: true
+seed: 200009
+test_size: 0.1
