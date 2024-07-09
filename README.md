@@ -9,7 +9,7 @@
 ### Team 
 | Name | Affilation | Email | Duty
 | :-- | :-- | :-- | :-- | 
-| Dauda Monsuru | Louisiana State University | mdauda1@lsu.edu| Experimentalist |
+| Dauda Monsuru | Louisiana State University | mdauda1@lsu.edu| Experiment |
 | Teslim Olayiwola | Louisiana State University | tolayi1@lsu.edu | Simulation |
 
 ## License
