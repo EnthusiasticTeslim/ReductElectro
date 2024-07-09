@@ -23,9 +23,9 @@ def ethane(Sn_percent, Pot, weight, pH, Cu_percent, cDen):
     a3 = 0.7149525683414504
     a4 = 0.620296271014388
     a5 = -0.3429464114810739
-    result = c0 + a0 * abs((Sn_percent / Pot) - (weight**3)) + a1 * abs((pH * Pot) - np.sqrt(cDen)) + a2 * ((pH - Pot) * (Cu_percent / cDen)) + a3 * ((Cu_percent / Pot) - (Cu_percent / pH)) + a4 * ((Cu_percent**6) * (Cu_percent - pH)) + a5 * (np.cbrt(Sn_percent) - np.cos(Cu_percent))
-
-    return result if result > 0 else 0
+    
+    ans = c0 + a0 * abs((Sn_percent / Pot) - (weight**3)) + a1 * abs((pH * Pot) - np.sqrt(cDen)) + a2 * ((pH - Pot) * (Cu_percent / cDen)) + a3 * ((Cu_percent / Pot) - (Cu_percent / pH)) + a4 * ((Cu_percent**6) * (Cu_percent - pH)) + a5 * (np.cbrt(Sn_percent) - np.cos(Cu_percent))
+    return ans if ans.any() > 0 else 0
 
 def carbonmono(Sn, Cu, Pot, pH, cDen):
     a0 = 3.277493220571178e-01
@@ -37,7 +37,7 @@ def carbonmono(Sn, Cu, Pot, pH, cDen):
     c0 = 1.886998352450209e-01
     
     ans = c0 + a0 * (np.abs(np.sqrt(Sn) - np.abs(Cu - Pot))) + a1 * (np.abs((pH - cDen) - (Pot**6))) + a2 * (np.abs((cDen / pH) - np.cos(Pot))) + a3 * ((Sn**6) * (Cu * cDen)) + a4 * (np.abs((Cu / cDen) - (Cu + Pot))) + a5 * (np.abs(np.sqrt(Sn) - (cDen / pH)))
-    return ans if ans > 0 else 0
+    return ans if ans.any() > 0 else 0
 
 
 def ethanol(Cu, weight, Pot, cDen, Sn, pH):
@@ -50,7 +50,7 @@ def ethanol(Cu, weight, Pot, cDen, Sn, pH):
     a5 = -2.343047991878564e-01
     
     ans = c0 + a0 * ((abs(Sn - cDen)) * (abs(Cu - cDen))) + a1 * (abs((np.exp(-1.0 * Pot)) - (Cu ** 6))) + a2 * (abs(np.cbrt(Sn) - (weight ** 2))) + a3 * (abs((cDen / Pot) - (pH * Pot))) + a4 * (abs((Cu / cDen) - (weight + Pot))) + a5 * (abs((Cu ** 6) - Pot))
-    return ans if ans > 0 else 0
+    return ans if ans.any() > 0 else 0
 
 def formate(weight, Sn_percent, Cu_percent, Pot, cDen, pH):
     a0 = -0.1001127428547696
@@ -63,7 +63,7 @@ def formate(weight, Sn_percent, Cu_percent, Pot, cDen, pH):
     
     ans = c0 + a0 * np.abs(np.abs(Cu_percent - cDen) - np.sqrt(Cu_percent)) + a1 * np.abs((pH * cDen) - np.abs(Cu_percent - Sn_percent)) + a2 * np.abs((Cu_percent**6) - np.exp(-1.0 * weight)) + a3 * np.abs(np.cbrt(Sn_percent) - (weight**2)) + a4 * ((Pot**6)**6) + a5 * np.abs((weight * Sn_percent) - np.abs(Cu_percent - weight))
 
-    return ans if ans > 0 else 0
+    return ans if ans.any() > 0 else 0
 
 def hydrogen(Sn, Cu, Pot, pH, cDen, weight):
     a0 = 1.863778473177432e-02
@@ -76,7 +76,7 @@ def hydrogen(Sn, Cu, Pot, pH, cDen, weight):
 
     ans = c0 + a0 * np.abs((cDen**3) - np.abs(Cu - weight)) + a1 * (Sn**2 * Cu**6) + a2 * np.abs((Pot / pH) - np.cbrt(weight)) + a3 * np.abs(np.sin(cDen) - (Pot * cDen)) + a4 * (np.cbrt(Sn) + (Cu - Pot)) + a5 * (np.exp(-1.0 * pH) + cDen**6)
    
-    return ans if ans > 0 else 0
+    return ans if ans.any() > 0 else 0
 
 def FEcalculator(Sn_percent, Pot, cDen, pH):
     Cu_percent = cu_fraction(Sn_percent) / 1.00 # max Cu fraction
