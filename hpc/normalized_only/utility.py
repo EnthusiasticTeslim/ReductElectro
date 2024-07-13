@@ -78,7 +78,7 @@ def hydrogen(Sn, Cu, Pot, pH, cDen, weight):
    
     return ans if ans.any() > 0 else 0
 
-def FEcalculator(Sn_percent, Pot, cDen, pH):
+def case1_FEcalculator(Sn_percent, Pot, cDen, pH):
     Cu_percent = cu_fraction(Sn_percent) / 1.00 # max Cu fraction
     weight = get_weight(Sn_percent) / 118.71 # max weight of the structure
     Pot /= 4.70 # max potential
@@ -101,3 +101,23 @@ def FEcalculator(Sn_percent, Pot, cDen, pH):
 
     }
 
+def case2_FEcalculator(Sn_percent, cDen, pH):
+    
+    return {
+        'CO': 0,
+        'Ethanol': 0,
+        'Formate': 0,
+        'H2': 0
+
+    }
+
+
+def case3_FEcalculator(Pot, cDen, pH):
+        
+        return {
+            'CO': 0,
+            'Ethanol': 0,
+            'Formate': 0,
+            'H2': 0
+    
+        }
