@@ -120,3 +120,6 @@ elif add_selectbox_2 and add_selectbox_3 and add_selectbox_4:
 else:
     st.error("Model accepts 'only' following combinations:")
     st.code("""- Current Density, Potential, Sn (fraction), pH\n- Current Density, Sn (fraction), pH\n- Potential, Sn (fraction), pH""", language='markdown')
+
+
+
