@@ -1,3 +1,6 @@
+import sys
+sys.dont_write_bytecode = True
+
 import streamlit as st
 from utility import case1_FEcalculator, case2_FEcalculator, case3_FEcalculator
 
