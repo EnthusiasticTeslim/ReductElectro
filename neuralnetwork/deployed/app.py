@@ -8,22 +8,14 @@ sys.path.append(parent_directory) # add parent directory to the system path
 
 import streamlit as st
 import numpy as np
-from model import MLP, cu_fraction, get_weight
-import torch
+import pandas as pd
+from model import MLP, cu_fraction, get_weight, preprocessing, predict
 
-def preprocessing(df):
-    df = torch.from_numpy(df).float()
-    return df
+@st.cache_data
+def convert_df(df):
+    # IMPORTANT: Cache the conversion to prevent computation on every rerun
+    return df.to_csv().encode("utf-8")
 
-def predict(data):
-    device = 'cpu' # trained on cpu
-    model = MLP(np.array([6, 20, 20, 15, 3])).to(device)
-    print(os.getcwd())
-    model.load_state_dict(torch.load(f'{parent_directory}/neural_network_model.pth'))
-    model.eval()
-    with torch.no_grad():
-        output = model(data)
-    return output
 
 style = """
         <style>
@@ -66,26 +58,78 @@ with st.expander('About this app'):
   st.code(""" - Current Density\n- Potential\n- Sn (fraction)\n- pH""", language='markdown')
   
 
-st.write('### Input Parameters')
-cDen = st.number_input('Current Density', min_value=141.00, max_value=450.00, value=200.00)
-Pot = st.number_input('Potential', min_value=2.80, max_value=4.70, value=3.50)
-Sn = st.number_input('Sn (fraction)', min_value=0.0, max_value=1.0, value=0.5)
-pH = st.number_input('pH', min_value=8.02, max_value=14.05, value=9.0)
-
-if st.button('Calculate'):
-    # ['cDen', 'Pot', 'Sn %', 'pH', 'weight', 'Cu %']
-    data = np.array([cDen/450.00, Pot/4.70, Sn/1.0, pH/14.05, get_weight(Sn) / 118.71, cu_fraction(Sn) / 1.0]).reshape(1, -1)
-    prediction = predict(preprocessing(data))
-    results = {
-        'C2H4': round(float(prediction[0, 0])*100, 2),
-        'Ethanol': round(float(prediction[0, 1])*100, 2),
-        'H2': round(float(prediction[0, 2])*100, 2)
-    }
-
-    st.write('## Faradaic Efficiency')
-    st.markdown(style, unsafe_allow_html=True)
+with st.sidebar:
+    # Load data
+    option = st.radio('Do you want to upload a file?', 
+                ['Yes', 'No'],
+                captions = ['File upload', 'No file upload'])
+    
+    if option == 'Yes':
+        uploaded_file = st.file_uploader("Choose a file", type=['xlsx', 'csv', 'txt'])
+        if uploaded_file is not None:
+            if uploaded_file.name.endswith('.csv'):
+                data = pd.read_csv(uploaded_file)
+            elif uploaded_file.name.endswith('.txt'):
+                data = pd.read_csv(uploaded_file, sep='\t')
+            elif uploaded_file.name.endswith('.xls') or uploaded_file.name.endswith('.xlsx'):
+                data = pd.read_excel(uploaded_file)
+            else:
+                st.write('Please upload a valid file')
+            st.write('Data shape:', data.shape)
+            st.write('Data:', data)
+        else:
+            st.write('Please upload a file')
         
-    st.markdown('<div class="result-container">', unsafe_allow_html=True)
-    for key, value in results.items():
-        st.markdown(f'<div class="result-item"><strong>{key}:</strong> {value}%</div>', unsafe_allow_html=True)
-        st.markdown('</div>', unsafe_allow_html=True)
+    else:
+        st.write('### Enter Input Parameters')
+        cDen = st.number_input('Current Density', min_value=141.00, max_value=450.00, value=200.00)
+        Pot = st.number_input('Potential', min_value=2.80, max_value=4.70, value=3.50)
+        Sn = st.number_input('Sn (%)', min_value=0.0, max_value=100.0, value=50.0)/100 # convert to fraction
+        pH = st.number_input('pH', min_value=8.02, max_value=14.05, value=9.0)
+
+# calculate the Faradaic efficiency
+if st.button('Calculate'):
+
+    if option == 'Yes': # write the results to the file
+
+        df = data.copy()
+        df = df[['cDen', 'Pot', 'Sn %', 'pH']]
+        df['cDen'] = df['cDen'] / 450.00
+        df['Pot'] = df['Pot'] / 4.70
+        df['Sn %'] = df['Sn %'] / 100.0
+        df['pH'] = df['pH'] / 14.05
+        df['Cu %'] = df['Sn %'].apply(cu_fraction) / 100.0 # convert to fraction
+        df['weight'] = df['Sn %'].apply(get_weight) / 118.71
+
+        df = np.array(df)
+
+        prediction = predict(preprocessing(df), parent_directory)
+        data['C2H4'] = prediction[:, 0]*100
+        data['Ethanol'] = prediction[:, 1]*100
+        data['H2'] = prediction[:, 2]*100
+        # write the results to the file and download
+        st.download_button(
+            label="Download data as CSV",
+            data=convert_df(data),
+            file_name="result.csv",
+            mime="text/csv",
+            )
+
+    else:
+
+        # ['cDen', 'Pot', 'Sn %', 'pH', 'weight', 'Cu %']
+        data = np.array([cDen/450.00, Pot/4.70, Sn/1, pH/14.05, get_weight(Sn)/118.71, cu_fraction(Sn)/1]).reshape(1, -1)
+        prediction = predict(preprocessing(data), parent_directory)
+        results = {
+                'C2H4': round(float(prediction[0, 0])*100, 2),
+                'Ethanol': round(float(prediction[0, 1])*100, 2),
+                'H2': round(float(prediction[0, 2])*100, 2)
+            }
+
+        st.write('## Faradaic Efficiency')
+        st.markdown(style, unsafe_allow_html=True)
+                
+        st.markdown('<div class="result-container">', unsafe_allow_html=True)
+        for key, value in results.items():
+            st.markdown(f'<div class="result-item"><strong>{key}:</strong> {value}%</div>', unsafe_allow_html=True)
+            st.markdown('</div>', unsafe_allow_html=True)
