@@ -1,5 +1,7 @@
 import sys
 sys.dont_write_bytecode = True
+import os
+import numpy as np
 import torch
 import torch.nn as nn
 
@@ -38,6 +40,32 @@ def get_weight(Sn):
     else:
         raise ValueError('Sn percent must be less than or equal to 1')
     return weight
+
+
+def preprocessing(df):
+    '''Preprocess the data
+    params:
+        df: numpy array, the input data
+    returns:
+    '''
+    df = torch.from_numpy(df).float()
+    return df
+
+def predict(data, parent_directory=os.getcwd()):
+    '''Predict the output 
+    params:
+        data: numpy array, the input data
+        parent_directory: str, the parent directory of the model
+    returns:
+        output: torch tensor, the output of the neural network
+    '''
+    device = 'cpu' # trained on cpu
+    model = MLP(np.array([6, 20, 20, 15, 3])).to(device)
+    model.load_state_dict(torch.load(f'{parent_directory}/neural_network_model.pth'))
+    model.eval()
+    with torch.no_grad():
+        output = model(data)
+    return output
 
 class MLP(nn.Module):
     """
