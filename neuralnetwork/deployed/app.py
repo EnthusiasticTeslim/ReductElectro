@@ -57,7 +57,7 @@ with st.sidebar:
     # Load data
     option = st.radio('Do you want to upload a file?', 
                 ['Yes', 'No'],
-                captions = ['File upload', 'No file upload'])
+                captions = ["file must have header: cDen, Pot, Sn %, pH",])
     
     if option == 'Yes':
         uploaded_file = st.file_uploader("Choose a file", type=['xlsx', 'csv', 'txt'])
