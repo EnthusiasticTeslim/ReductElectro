@@ -70,7 +70,7 @@ with st.sidebar:
                 data = pd.read_excel(uploaded_file)
             else:
                 st.write('Please upload a valid file')
-            st.write('Data shape:', data.shape)
+            st.write('Number of Samples:', data.shape[1])
             st.write('Data:', data)
         else:
             st.write('Please upload a file')
