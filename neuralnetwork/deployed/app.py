@@ -11,11 +11,6 @@ import numpy as np
 import pandas as pd
 from model import MLP, cu_fraction, get_weight, preprocessing, predict
 
-@st.cache_data
-def convert_df(df):
-    # IMPORTANT: Cache the conversion to prevent computation on every rerun
-    return df.to_csv().encode("utf-8")
-
 
 style = """
         <style>
@@ -110,7 +105,7 @@ if st.button('Calculate'):
         # write the results to the file and download
         st.download_button(
             label="Download data as CSV",
-            data=convert_df(data),
+            data=data.to_csv().encode("utf-8"),
             file_name="result.csv",
             mime="text/csv",
             )
