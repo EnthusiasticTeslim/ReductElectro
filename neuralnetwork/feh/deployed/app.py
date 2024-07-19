@@ -37,14 +37,14 @@ st.info('This app calculates Faradaic efficiency of the Sn/Cu CO2RR catalysis')
 
 with st.expander('About this app'):
   st.markdown('**What can this app do?**')
-  st.info('This app allow users to predict the faradiac efficiencies based on a SISSO based ML model.')
+  st.info('This app allow users to predict the faradiac efficiencies based on a neural network based ML model.')
 
   st.markdown('**How to use the app?**')
   st.warning('To engage with the app, set the input parameters as desired by adjusting the various slider widgets. As a result, this would call the trained model and then, display the model results.')
 
   st.markdown('**Under the hood**')
   st.markdown('ML model:')
-  st.code('''- Trained pytorch-based NN model to predict FE of C2H4, C2H5OH and H2 :''', language='markdown')
+  st.code('''- Trained pytorch-based NN model to predict FE of HCOOH, C2H5OH and H2 :''', language='markdown')
   
   st.markdown('Libraries used:')
   st.code('''- numpy for data wrangling\n- pytorch for building a machine learning model\n- Streamlit for user interface''', language='markdown')
@@ -52,8 +52,11 @@ with st.expander('About this app'):
 
   st.markdown('**Input Parameters**')
   st.code(""" - Current Density\n- Potential\n- Sn (fraction)\n- pH""", language='markdown')
-  
 
+  st.markdown('**Code**')
+  url = "https://github.com/EnthusiasticTeslim/ReductElectro"
+  st.code(f"""{url}""", language='markdown')
+  
 with st.sidebar:
     # Load data
     option = st.radio('Do you want to upload a file?', 
