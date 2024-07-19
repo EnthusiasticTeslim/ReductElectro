@@ -42,7 +42,7 @@ def get_weight(Sn):
     return weight
 
 
-def preprocessing(df):
+def preprocessing(df: np.array):
     '''Preprocess the data
     params:
         df: numpy array, the input data
@@ -51,17 +51,17 @@ def preprocessing(df):
     df = torch.from_numpy(df).float()
     return df
 
-def predict(data, parent_directory=os.getcwd()):
+def predict(data: np.array, layer_model: list =[6, 16, 8, 3], dir: str = os.getcwd()):
     '''Predict the output 
     params:
         data: numpy array, the input data
-        parent_directory: str, the parent directory of the model
+        dir: str, the parent directory of the model
     returns:
         output: torch tensor, the output of the neural network
     '''
     device = 'cpu' # trained on cpu
-    model = MLP(np.array([6, 20, 20, 15, 3])).to(device)
-    model.load_state_dict(torch.load(f'{parent_directory}/neural_network_model.pth'))
+    model = MLP(np.array(layer_model)).to(device)
+    model.load_state_dict(torch.load(f'{dir}/neural_network_model.pth'))
     model.eval()
     with torch.no_grad():
         output = model(data)

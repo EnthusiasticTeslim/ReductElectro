@@ -3,14 +3,15 @@ sys.dont_write_bytecode = True
 import os
 # access files in model.py which is in the parent directory
 cwd=os.path.dirname(__file__) # current working directory
-parent_directory = os.path.abspath(os.path.join(cwd, '..')) # parent directory
+main_directory = os.path.abspath(os.path.join(cwd, '..')) # main directory
+parent_directory = os.path.abspath(os.path.join(cwd, '../..')) # parent directory
 sys.path.append(parent_directory) # add parent directory to the system path
 
 import streamlit as st
 import numpy as np
 import pandas as pd
-from model import MLP, cu_fraction, get_weight, preprocessing, predict
-
+from src.model import cu_fraction, get_weight, preprocessing, predict
+layers = [6, 20, 20, 15, 3]
 
 style = """
         <style>
@@ -96,9 +97,8 @@ if st.button('Calculate'):
         df['Cu %'] = df['Sn %'].apply(cu_fraction) / 100.0 # convert to fraction
         df['weight'] = df['Sn %'].apply(get_weight) / 118.71
 
-        df = np.array(df)
-
-        prediction = predict(preprocessing(df), parent_directory)
+        df_ = np.array(df)
+        prediction = predict(data=preprocessing(df_), layer_model=layers, dir=main_directory)
         data['C2H4'] = prediction[:, 0]*100
         data['Ethanol'] = prediction[:, 1]*100
         data['H2'] = prediction[:, 2]*100
@@ -111,10 +111,9 @@ if st.button('Calculate'):
             )
 
     else:
-
         # ['cDen', 'Pot', 'Sn %', 'pH', 'weight', 'Cu %']
-        data = np.array([cDen/450.00, Pot/4.70, Sn/1, pH/14.05, get_weight(Sn)/118.71, cu_fraction(Sn)/1]).reshape(1, -1)
-        prediction = predict(preprocessing(data), parent_directory)
+        df = np.array([cDen/450.00, Pot/4.70, Sn/1, pH/14.05, get_weight(Sn)/118.71, cu_fraction(Sn)/1]).reshape(1, -1)
+        prediction = predict(data=preprocessing(df), layer_model=layers, dir=main_directory)
         results = {
                 'C2H4': round(float(prediction[0, 0])*100, 2),
                 'Ethanol': round(float(prediction[0, 1])*100, 2),
