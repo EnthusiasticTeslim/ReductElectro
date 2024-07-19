@@ -1,7 +1,7 @@
 import sys
 sys.dont_write_bytecode = True
 
-from model import to_np
+from .model import to_np
 import numpy as np
 import seaborn as sns
 
