@@ -89,46 +89,52 @@ with st.sidebar:
 # calculate the Faradaic efficiency
 if st.button('Calculate'):
 
-    if option == 'Yes': # write the results to the file
+    # check if the file has the required columns
+    if 'cDen' in data.columns and 'Pot' in data.columns and 'Sn %' in data.columns and 'pH' in data.columns:
 
-        df = data.copy()
-        df = df[['cDen', 'Pot', 'Sn %', 'pH']]
-        df['cDen'] = df['cDen'] / 450.00
-        df['Pot'] = df['Pot'] / 4.70 # convert to fraction
-        df['Sn %'] = df['Sn %'] / 100.0 # convert to fraction from percentage
-        df['pH'] = df['pH'] / 14.05
-        df['Cu %'] = df['Sn %'].apply(cu_fraction) / 1 # convert to fraction
-        df['weight'] = df['Sn %'].apply(get_weight) / 118.71
+        if option == 'Yes': # write the results to the file
 
-        df = df[['cDen', 'Pot', 'Sn %', 'pH', 'weight', 'Cu %']]
+            df = data.copy()
+            df = df[['cDen', 'Pot', 'Sn %', 'pH']]
+            df['cDen'] = df['cDen'] / 450.00
+            df['Pot'] = df['Pot'] / 4.70 # convert to fraction
+            df['Sn %'] = df['Sn %'] / 100.0 # convert to fraction from percentage
+            df['pH'] = df['pH'] / 14.05
+            df['Cu %'] = df['Sn %'].apply(cu_fraction) / 1 # convert to fraction
+            df['weight'] = df['Sn %'].apply(get_weight) / 118.71
 
-        df_ = np.array(df)
-        prediction = predict(data=preprocessing(df_), layer_model=layers, dir=main_directory)
-        data['HCOOH'] = prediction[:, 0]*100
-        data['Ethanol'] = prediction[:, 1]*100
-        data['H2'] = prediction[:, 2]*100
-        # write the results to the file and download
-        st.download_button(
-            label="Download data as CSV",
-            data=data.to_csv().encode("utf-8"),
-            file_name="result.csv",
-            mime="text/csv",
-            )
+            df = df[['cDen', 'Pot', 'Sn %', 'pH', 'weight', 'Cu %']]
+
+            df_ = np.array(df)
+            prediction = predict(data=preprocessing(df_), layer_model=layers, dir=main_directory)
+            data['HCOOH'] = prediction[:, 0]*100
+            data['Ethanol'] = prediction[:, 1]*100
+            data['H2'] = prediction[:, 2]*100
+            # write the results to the file and download
+            st.download_button(
+                label="Download data as CSV",
+                data=data.to_csv().encode("utf-8"),
+                file_name="result.csv",
+                mime="text/csv",
+                )
+
+        else:
+            # ['cDen', 'Pot', 'Sn %', 'pH', 'weight', 'Cu %']
+            df = np.array([cDen/450.00, Pot/4.70, Sn/1, pH/14.05, get_weight(Sn)/118.71, cu_fraction(Sn)/1]).reshape(1, -1)
+            prediction = predict(data=preprocessing(df), layer_model=layers, dir=main_directory)
+            results = {
+                    'HCOOH': round(float(prediction[0, 0])*100, 2),
+                    'Ethanol': round(float(prediction[0, 1])*100, 2),
+                    'H2': round(float(prediction[0, 2])*100, 2)
+                }
+
+            st.write('## Faradaic Efficiency')
+            st.markdown(style, unsafe_allow_html=True)
+                    
+            st.markdown('<div class="result-container">', unsafe_allow_html=True)
+            for key, value in results.items():
+                st.markdown(f'<div class="result-item"><strong>{key}:</strong> {value}%</div>', unsafe_allow_html=True)
+                st.markdown('</div>', unsafe_allow_html=True)
 
     else:
-        # ['cDen', 'Pot', 'Sn %', 'pH', 'weight', 'Cu %']
-        df = np.array([cDen/450.00, Pot/4.70, Sn/1, pH/14.05, get_weight(Sn)/118.71, cu_fraction(Sn)/1]).reshape(1, -1)
-        prediction = predict(data=preprocessing(df), layer_model=layers, dir=main_directory)
-        results = {
-                'HCOOH': round(float(prediction[0, 0])*100, 2),
-                'Ethanol': round(float(prediction[0, 1])*100, 2),
-                'H2': round(float(prediction[0, 2])*100, 2)
-            }
-
-        st.write('## Faradaic Efficiency')
-        st.markdown(style, unsafe_allow_html=True)
-                
-        st.markdown('<div class="result-container">', unsafe_allow_html=True)
-        for key, value in results.items():
-            st.markdown(f'<div class="result-item"><strong>{key}:</strong> {value}%</div>', unsafe_allow_html=True)
-            st.markdown('</div>', unsafe_allow_html=True)
+        st.warning('Please upload a file with the required columns: cDen, Pot, Sn %, pH', icon="⚠️")
