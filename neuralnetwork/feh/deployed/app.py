@@ -90,9 +90,11 @@ with st.sidebar:
 if st.button('Calculate'):
 
     # check if the file has the required columns
-    if 'cDen' in data.columns and 'Pot' in data.columns and 'Sn %' in data.columns and 'pH' in data.columns:
+    
 
-        if option == 'Yes': # write the results to the file
+    if option == 'Yes': # write the results to the file
+            
+        if 'cDen' in data.columns and 'Pot' in data.columns and 'Sn %' in data.columns and 'pH' in data.columns:
 
             df = data.copy()
             df = df[['cDen', 'Pot', 'Sn %', 'pH']]
@@ -117,24 +119,26 @@ if st.button('Calculate'):
                 file_name="result.csv",
                 mime="text/csv",
                 )
-
         else:
-            # ['cDen', 'Pot', 'Sn %', 'pH', 'weight', 'Cu %']
-            df = np.array([cDen/450.00, Pot/4.70, Sn/1, pH/14.05, get_weight(Sn)/118.71, cu_fraction(Sn)/1]).reshape(1, -1)
-            prediction = predict(data=preprocessing(df), layer_model=layers, dir=main_directory)
-            results = {
+            st.warning('Please upload a file with the required columns: cDen, Pot, Sn %, pH', icon="⚠️")
+
+    else:
+        
+        # ['cDen', 'Pot', 'Sn %', 'pH', 'weight', 'Cu %']
+        df = np.array([cDen/450.00, Pot/4.70, Sn/1, pH/14.05, get_weight(Sn)/118.71, cu_fraction(Sn)/1]).reshape(1, -1)
+        prediction = predict(data=preprocessing(df), layer_model=layers, dir=main_directory)
+        results = {
                     'HCOOH': round(float(prediction[0, 0])*100, 2),
                     'Ethanol': round(float(prediction[0, 1])*100, 2),
                     'H2': round(float(prediction[0, 2])*100, 2)
                 }
 
-            st.write('## Faradaic Efficiency')
-            st.markdown(style, unsafe_allow_html=True)
+        st.write('## Faradaic Efficiency')
+        st.markdown(style, unsafe_allow_html=True)
                     
-            st.markdown('<div class="result-container">', unsafe_allow_html=True)
-            for key, value in results.items():
-                st.markdown(f'<div class="result-item"><strong>{key}:</strong> {value}%</div>', unsafe_allow_html=True)
-                st.markdown('</div>', unsafe_allow_html=True)
+        st.markdown('<div class="result-container">', unsafe_allow_html=True)
+        for key, value in results.items():
+            st.markdown(f'<div class="result-item"><strong>{key}:</strong> {value}%</div>', unsafe_allow_html=True)
+            st.markdown('</div>', unsafe_allow_html=True)
 
-    else:
-        st.warning('Please upload a file with the required columns: cDen, Pot, Sn %, pH', icon="⚠️")
+    
