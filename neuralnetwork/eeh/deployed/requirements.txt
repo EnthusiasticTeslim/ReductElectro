@@ -1,7 +1,7 @@
-sklearn
 matplotlib
 seaborn
 pandas
 numpy
 torch
 openpyxl
+scikit-learn
