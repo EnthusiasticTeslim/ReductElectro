@@ -4,13 +4,17 @@ import os
 # access files in model.py which is in the parent directory
 cwd=os.path.dirname(__file__) # current working directory
 main_directory = os.path.abspath(os.path.join(cwd, '..')) # main directory
-parent_directory = os.path.abspath(os.path.join(cwd, '../..')) # parent directory
+parent_directory = os.path.abspath(os.path.join(cwd, '../../..')) # parent directory
 sys.path.append(parent_directory) # add parent directory to the system path
+# print('main_directory:', main_directory)
+# print('parent_directory:', parent_directory)
 
 import streamlit as st
 import numpy as np
 import pandas as pd
-from src.model import cu_fraction, get_weight, preprocessing, predict
+from src.model import predict
+from src.utils import cu_fraction, get_weight, preprocessing
+
 layers = [6, 20, 20, 15, 3]
 
 style = """
