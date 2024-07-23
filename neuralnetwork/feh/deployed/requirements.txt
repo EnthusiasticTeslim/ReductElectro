@@ -1,3 +1,6 @@
+sklearn
+matplotlib
+seaborn
 pandas
 numpy
 torch
