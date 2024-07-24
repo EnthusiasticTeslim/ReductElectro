@@ -1,12 +1,22 @@
-# Machine Learning accelerate CO2 reduction
+# Machine Learning in CO2 reduction
+
 
 ## Research Questions
-- Are there any relationship between available parameters (current density, pH, Sn % and potential) and target (faradaic efficiency, FE)?
-- Can we develop an accurate predictive model for the different FE response?
-- Can you explain the impact of the features on the model response? 
-- Can you design new materials with the proposed ML-based models?
+- Are there any relationship between available parameters and target (faradaic efficiency, FE)?
+- Can we develop an accurate predictive model for the FE response?
+- Can you explain the impact of the features on the FE response? 
+- Can you design novel conditions with the proposed ML-based models?
 
-### Team 
+## To-Do
+- [x] Clean and perform preliminary analysis on the data. 
+- [x] Train ML model using methods such as ANN, RF, XGB, etc.
+- [x] Use best model to perform feature analysis.
+- [x] Deploy the model to [app](https://reductelectro.streamlit.app).
+- [x] Verify model predictions with new experiments.
+- [ ] Propose novel optimized experimental conditions for assessment.
+- [ ] Prepare manuscript
+
+## Team 
 | Name | Affilation | Email | Duty
 | :-- | :-- | :-- | :-- | 
 | Dauda Monsuru | Louisiana State University | mdauda1@lsu.edu| Experiment |
