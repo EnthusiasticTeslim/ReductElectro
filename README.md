@@ -1,11 +1,10 @@
 # Machine Learning in CO2 reduction
 
-
 ## Research Questions
-- Are there any relationship between available parameters and target (faradaic efficiency, FE)?
-- Can we develop an accurate predictive model for the FE response?
-- Can you explain the impact of the features on the FE response? 
-- Can you design novel conditions with the proposed ML-based models?
+- Determine the relationship between available parameters and target (faradaic efficiency, FE)?.
+- Develop accurate predictive model for the FE response.
+- Explain the impact of the features on the FE response.
+- Design novel conditions with the proposed ML-based models.
 
 ## To-Do
 - [x] Clean and perform preliminary analysis on the data. 
