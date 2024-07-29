@@ -64,7 +64,7 @@ with st.expander('About this app'):
 with st.sidebar:
     # Load data
     option = st.radio('Do you want to upload a file?', 
-                ['Yes', 'No'],
+                ['No', 'Yes'],
                 captions = ["file must have header: cDen, Pot, Sn %, pH",])
     
     if option == 'Yes':
