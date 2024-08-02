@@ -113,7 +113,7 @@ if st.button('Calculate'):
 
             df_ = np.array(df)
             prediction = predict(data=preprocessing(df_), layer_model=layers, dir=main_directory)
-            data['HCOOH'] = prediction[:, 0]*100
+            data['Formate'] = prediction[:, 0]*100
             data['Ethanol'] = prediction[:, 1]*100
             data['H2'] = prediction[:, 2]*100
             # write the results to the file and download
@@ -132,7 +132,7 @@ if st.button('Calculate'):
         df = np.array([cDen/450.00, Pot/4.70, Sn/1, pH/14.05, get_weight(Sn)/118.71, cu_fraction(Sn)/1]).reshape(1, -1)
         prediction = predict(data=preprocessing(df), layer_model=layers, dir=main_directory)
         results = {
-                    'HCOOH': round(float(prediction[0, 0])*100, 2),
+                    'Formate': round(float(prediction[0, 0])*100, 2),
                     'Ethanol': round(float(prediction[0, 1])*100, 2),
                     'H2': round(float(prediction[0, 2])*100, 2)
                 }
