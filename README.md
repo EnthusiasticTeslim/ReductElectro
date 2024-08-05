@@ -12,7 +12,7 @@
 - [x] Use best model to perform feature analysis.
 - [x] Deploy the model to [app](https://reductelectro.streamlit.app).
 - [x] Verify model predictions with new experiments.
-- [ ] Propose novel optimized experimental conditions for assessment.
+- [x] Propose novel optimized experimental conditions for assessment.
 - [ ] Prepare manuscript
 
 ## Team 
